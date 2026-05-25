@@ -34,12 +34,18 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
       font-family: Inter, Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--text);
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    main {
       overflow-x: hidden;
     }
 
@@ -212,9 +218,15 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      min-width: 0;
+      flex: 1 1 auto;
       font-weight: 950;
       text-transform: uppercase;
       letter-spacing: -.03em;
+    }
+
+    .brand span {
+      min-width: 0;
     }
 
     .brand-mark {
@@ -228,6 +240,15 @@
       box-shadow: var(--shadow-orange);
       color: var(--white);
       font-weight: 950;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 0 16px rgba(255, 138, 0, .28));
     }
 
     .brand small {
@@ -311,6 +332,8 @@
       margin: 0 auto 22px;
       display: block;
       filter: drop-shadow(0 22px 48px rgba(0, 0, 0, .42));
+      transform: scale(1.16);
+      transform-origin: center;
     }
 
     .hero-actions {
@@ -407,8 +430,11 @@
       width: 100%;
       border-radius: 24px;
       aspect-ratio: 16 / 10;
-      object-fit: cover;
+      object-fit: contain;
       object-position: center;
+      background: transparent;
+      transform: scale(1.24);
+      transform-origin: center;
     }
 
     .floating-card {
@@ -556,6 +582,7 @@
         radial-gradient(circle at 10% 20%, rgba(0,168,255,.14), transparent 30%),
         radial-gradient(circle at 85% 70%, rgba(255,138,0,.14), transparent 34%),
         #07090c;
+      overflow-x: hidden;
     }
 
     .about-grid {
@@ -590,6 +617,14 @@
       object-fit: cover;
     }
 
+    .about-media img.about-logo {
+      width: 100%;
+      height: auto;
+      margin-inline: auto;
+      aspect-ratio: auto;
+      object-fit: contain;
+    }
+
     .check-list {
       display: grid;
       gap: 16px;
@@ -616,53 +651,12 @@
       font-weight: 950;
     }
 
-    /* PROCESS */
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-top: 42px;
-    }
-
-    .step {
-      position: relative;
-      padding: 26px;
-      min-height: 250px;
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
-      border: 1px solid rgba(255,255,255,.1);
-      overflow: hidden;
-    }
-
-    .step::after {
-      content: "";
-      position: absolute;
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      right: -58px;
-      bottom: -58px;
-      background: radial-gradient(circle, rgba(255,138,0,.22), transparent 65%);
-    }
-
-    .step-number {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--orange), var(--blue));
-      color: #fff;
-      font-weight: 950;
-      margin-bottom: 28px;
-    }
-
-    .step h3 {
-      margin-bottom: 12px;
-    }
-
-    .step p {
-      font-size: 15px;
+    .section-divider {
+      width: min(100% - 32px, var(--max));
+      height: 1px;
+      margin: 0 auto;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .12) 18%, rgba(255, 138, 0, .45) 50%, rgba(255, 255, 255, .12) 82%, transparent);
+      opacity: .9;
     }
 
     /* DIFFERENTIALS */
@@ -769,8 +763,15 @@
       margin-bottom: 0;
     }
 
+    .footer-brand .brand-logo {
+      width: 54px;
+      height: 54px;
+      flex: 0 0 54px;
+    }
+
     .footer-text {
       font-size: 14px;
+      max-width: 460px;
     }
 
     .footer-links {
@@ -781,26 +782,34 @@
       font-size: 14px;
     }
 
+    .footer-links a {
+      line-height: 1.5;
+    }
+
     .float-whatsapp {
       position: fixed;
       right: 22px;
       bottom: 22px;
       z-index: 60;
-      width: 62px;
-      height: 62px;
+      width: 68px;
+      height: 68px;
       border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: var(--green);
-      color: #fff;
-      box-shadow: 0 0 34px rgba(34,211,107,.5);
+      display: block;
+      pointer-events: auto;
+      background: transparent;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, .28);
       animation: pulse 1.7s infinite;
+      overflow: visible;
+      opacity: 1;
+      visibility: visible;
     }
 
-    .float-whatsapp svg {
-      width: 32px;
-      height: 32px;
+    .float-whatsapp img {
+      width: 100%;
+      height: 100%;
       display: block;
+      object-fit: contain;
+      border-radius: 50%;
     }
 
     @keyframes pulse {
@@ -818,6 +827,15 @@
     .reveal.show {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    @media (min-width: 981px) {
+      .product-stage img {
+        height: 100%;
+        object-fit: cover;
+        object-position: center 58%;
+        transform: scale(1);
+      }
     }
 
     /* MOBILE */
@@ -872,10 +890,6 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .process-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
       .section-head {
         align-items: flex-start;
         flex-direction: column;
@@ -897,11 +911,14 @@
       }
 
       .nav {
+        width: min(100% - 20px, var(--max));
         padding: 12px 12px 12px 14px;
+        gap: 10px;
       }
 
       .brand span {
         font-size: 14px;
+        line-height: 1.15;
       }
 
       .brand small {
@@ -914,12 +931,52 @@
         margin-bottom: 10px;
       }
 
-      .hero-copy {
-        text-align: left;
+      .hero-copy > .eyebrow,
+      .hero-copy > h1,
+      .hero-copy > p,
+      .about-copy > .eyebrow,
+      .about-copy > h2,
+      .about-copy > p,
+      .section-head,
+      .section-head > div,
+      .section-head h2,
+      .section-head p {
+        text-align: center;
+      }
+
+      .hero-copy > .eyebrow,
+      .about-copy > .eyebrow,
+      .section-head .eyebrow {
+        margin-inline: auto;
+      }
+
+      .hero-copy > p,
+      .about-copy > p,
+      .section-head p {
+        margin-inline: auto;
+      }
+
+      .section-head {
+        align-items: center;
       }
 
       .hero-mobile-image {
         display: block;
+        overflow: hidden;
+      }
+
+      .hero-mobile-image img {
+        width: 100%;
+        max-width: 380px;
+        margin: -70px auto -70px;
+        display: block;
+        filter: drop-shadow(0 22px 48px rgba(0, 0, 0, .42));
+        transform: scale(1.16);
+        transform-origin: center;
+      }
+
+      .about-media::before {
+        inset: -10px;
       }
 
       .hero-visual {
@@ -940,8 +997,7 @@
       }
 
       .catalog-grid,
-      .diff-grid,
-      .process-grid {
+      .diff-grid {
         grid-template-columns: 1fr;
       }
 
@@ -956,22 +1012,33 @@
       .footer-grid {
         grid-template-columns: 1fr;
         text-align: center;
-        justify-items: center;
+        justify-items: stretch;
+        gap: 28px;
       }
 
       .footer-brand-wrap {
         align-items: center;
         text-align: center;
         width: 100%;
+        gap: 14px;
       }
 
       .footer-brand {
         justify-content: center !important;
+        flex-direction: column;
+        gap: 14px;
         text-align: center;
       }
 
       .footer-brand span {
         text-align: center;
+        width: 100%;
+      }
+
+      .footer-brand .brand-logo {
+        width: 72px;
+        height: 72px;
+        flex-basis: 72px;
       }
 
       .footer-links {
@@ -980,10 +1047,26 @@
         justify-content: center;
         text-align: center;
         width: 100%;
+        gap: 12px;
       }
 
       .footer-text {
         text-align: center;
+        max-width: 100%;
+        padding-inline: 10px;
+      }
+
+      .float-whatsapp {
+        position: fixed;
+        right: 16px;
+        bottom: calc(16px + env(safe-area-inset-bottom));
+        width: 72px;
+        height: 72px;
+        z-index: 80;
+      }
+
+      footer {
+        padding-bottom: calc(120px + env(safe-area-inset-bottom));
       }
     }
   </style>
@@ -999,7 +1082,7 @@
   <header class="topbar">
     <nav class="nav">
       <a class="brand" href="#inicio" aria-label="DNA Pulseiras">
-        <div class="brand-mark">DNA</div>
+        <img class="brand-logo" src="imagens/logo/logo sem fundo.png" alt="" aria-hidden="true" />
         <span>DNA Pulseiras <small>Personalizadas e Brindes</small></span>
       </a>
 
@@ -1008,7 +1091,7 @@
       <div class="menu" id="menu">
         <a href="#catalogo">Produtos</a>
         <a href="#sobre">Sobre</a>
-        <a href="#processo">Como funciona</a>
+        <a href="#orcamento">Orçamento</a>
         <a href="#diferenciais">Diferenciais</a>
         <a class="btn btn-primary js-whatsapp" href="#">
           <svg class="whatsapp-icon" viewBox="0 0 32 32" aria-hidden="true">
@@ -1026,7 +1109,7 @@
       <div class="container hero-grid">
         <div class="hero-copy reveal">
           <div class="hero-mobile-image">
-            <img src="c00b8f68-3b86-46d5-9bdd-c2d4b38113b8.png" alt="Produtos personalizados DNA Pulseiras" />
+            <img src="imagens/PULSEIRAS-HEADER.png" alt="Produtos personalizados DNA Pulseiras" />
           </div>
 
           <span class="eyebrow">Personalizados com identidade</span>
@@ -1068,7 +1151,7 @@
           <div class="floating-card card-b">Brindes sob demanda <span>para marcas e eventos</span></div>
 
           <div class="product-stage">
-            <img src="imagens/logo/logo sem fundo.png" alt="Produtos personalizados DNA Pulseiras" />
+            <img src="imagens/PULSEIRAS-HEADER.png" alt="Produtos personalizados DNA Pulseiras" />
           </div>
         </div>
       </div>
@@ -1096,9 +1179,6 @@
             <span class="eyebrow">Catálogo estratégico</span>
             <h2>Produtos que colocam sua marca em circulação</h2>
           </div>
-          <p>
-            Uma base direta para Google Ads: produtos claros, CTA rápido e foco total em conversão via WhatsApp. Menos fricção, mais lead qualificado.
-          </p>
         </div>
 
         <div class="catalog-grid">
@@ -1162,7 +1242,7 @@
     <section class="about section" id="sobre">
       <div class="container about-grid">
         <div class="about-media reveal">
-          <img src="imagens/logo/logo sem fundo.png" alt="Logo DNA Pulseiras Personalizadas e Brindes" />
+          <img class="about-logo" src="imagens/logo/logo sem fundo.png" alt="Logo DNA Pulseiras Personalizadas e Brindes" />
         </div>
 
         <div class="about-copy reveal">
@@ -1189,45 +1269,7 @@
       </div>
     </section>
 
-    <section class="section" id="processo">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="eyebrow">Fluxo de orçamento</span>
-            <h2>Como funciona na prática</h2>
-          </div>
-          <p>
-            O objetivo aqui é reduzir ruído comercial. O cliente chama no WhatsApp, envia a ideia, recebe direcionamento e avança para aprovação do layout.
-          </p>
-        </div>
-
-        <div class="process-grid">
-          <div class="step reveal">
-            <div class="step-number">01</div>
-            <h3>Você chama no WhatsApp</h3>
-            <p>Conte qual produto deseja, quantidade aproximada, prazo e objetivo da ação.</p>
-          </div>
-
-          <div class="step reveal">
-            <div class="step-number">02</div>
-            <h3>Envia sua marca</h3>
-            <p>Recebemos logo, referências, cores e textos que devem entrar na personalização.</p>
-          </div>
-
-          <div class="step reveal">
-            <div class="step-number">03</div>
-            <h3>Layout para aprovação</h3>
-            <p>Preparamos uma proposta visual para alinhar o acabamento antes da produção.</p>
-          </div>
-
-          <div class="step reveal">
-            <div class="step-number">04</div>
-            <h3>Produção e entrega</h3>
-            <p>Após aprovação e confirmação do pedido, seguimos com a produção e envio.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="section-divider" aria-hidden="true"></div>
 
     <section class="diff section" id="diferenciais">
       <div class="container">
@@ -1236,9 +1278,6 @@
             <span class="eyebrow">Por que escolher</span>
             <h2>Diferenciais que aumentam a segurança da compra</h2>
           </div>
-          <p>
-            Para tráfego pago, confiança é ativo. Esta área fortalece percepção de valor, resolve objeções e empurra o lead para o próximo passo.
-          </p>
         </div>
 
         <div class="diff-grid">
@@ -1290,7 +1329,7 @@
     <div class="container footer-grid">
       <div class="footer-brand-wrap">
         <div class="brand footer-brand">
-          <div class="brand-mark">DNA</div>
+          <img class="brand-logo" src="imagens/logo/logo sem fundo.png" alt="Logo DNA Pulseiras Personalizadas e Brindes" />
           <span>DNA Pulseiras <small>Personalizadas e Brindes</small></span>
         </div>
         <p class="footer-text">Pulseiras e brindes personalizados para marcas, eventos, campanhas e empresas.</p>
@@ -1298,17 +1337,14 @@
       <div class="footer-links">
         <a href="#catalogo">Produtos</a>
         <a href="#sobre">Sobre</a>
-        <a href="#processo">Como funciona</a>
+        <a href="#orcamento">Orçamento</a>
         <a class="js-whatsapp" href="#">WhatsApp</a>
       </div>
     </div>
   </footer>
 
   <a class="float-whatsapp js-whatsapp" href="#" aria-label="Chamar no WhatsApp">
-    <svg class="whatsapp-icon" viewBox="0 0 32 32" aria-hidden="true">
-      <path fill="currentColor" d="M19.11 17.19c-.27-.14-1.59-.78-1.84-.87-.25-.09-.43-.14-.61.14-.18.27-.7.87-.86 1.05-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.18-1.34-.8-.71-1.35-1.59-1.51-1.86-.16-.27-.02-.42.12-.56.13-.13.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.46-.61-.46h-.52c-.18 0-.48.07-.73.34s-.96.94-.96 2.29.98 2.66 1.11 2.84c.14.18 1.92 2.93 4.65 4.11.65.28 1.16.45 1.56.58.66.21 1.26.18 1.73.11.53-.08 1.59-.65 1.82-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32Z"/>
-      <path fill="currentColor" d="M16.03 3.2c-6.97 0-12.63 5.65-12.63 12.62 0 2.23.58 4.42 1.68 6.35L3.2 28.8l6.79-1.77a12.58 12.58 0 0 0 6.04 1.54h.01c6.96 0 12.62-5.66 12.62-12.62 0-3.37-1.31-6.54-3.69-8.93A12.53 12.53 0 0 0 16.03 3.2Zm0 23.19h-.01a10.5 10.5 0 0 1-5.35-1.46l-.38-.22-4.03 1.05 1.08-3.93-.25-.4a10.43 10.43 0 0 1-1.61-5.58c0-5.79 4.71-10.5 10.51-10.5 2.8 0 5.43 1.09 7.41 3.08a10.42 10.42 0 0 1 3.07 7.41c0 5.79-4.71 10.5-10.44 10.5Z"/>
-    </svg>
+    <img src="imagens/icones/whatsapp.png" alt="" aria-hidden="true" />
   </a>
 
   <script>
