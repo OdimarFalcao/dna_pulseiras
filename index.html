@@ -774,6 +774,13 @@
       max-width: 460px;
     }
 
+    .footer-legal {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+      max-width: 460px;
+    }
+
     .footer-links {
       display: flex;
       gap: 16px;
@@ -1056,6 +1063,12 @@
         padding-inline: 10px;
       }
 
+      .footer-legal {
+        max-width: 100%;
+        padding-inline: 10px;
+        text-align: center;
+      }
+
       .float-whatsapp {
         position: fixed;
         right: 16px;
@@ -1076,7 +1089,7 @@
     INSTRUÇÃO RÁPIDA:
     1) Troque os caminhos das imagens abaixo pelos arquivos reais no servidor.
     2) Troque o número do WhatsApp na variável WHATSAPP_NUMBER no final do arquivo.
-    3) Se for usar Google Ads, instale Tag Manager/Conversion Tracking antes de subir campanha.
+    3) Se for usar site Ads, instale Tag Manager/Conversion Tracking antes de subir campanha.
   -->
 
   <header class="topbar">
@@ -1113,7 +1126,7 @@
           </div>
 
           <span class="eyebrow">Personalizados com identidade</span>
-          <h1>Pulseiras e brindes com a <span class="text-gradient">DNA da sua marca</span></h1>
+          <h1>Pulseiras e brindes com o <span class="text-gradient">DNA da sua marca</span></h1>
           <p>
             Produzimos pulseiras de silicone, bonés, sacochilas, chaveiros e copos personalizados para empresas, eventos, igrejas, campanhas e ações promocionais. Layout profissional, atendimento rápido e produção sob demanda.
           </p>
@@ -1333,6 +1346,7 @@
           <span>DNA Pulseiras <small>Personalizadas e Brindes</small></span>
         </div>
         <p class="footer-text">Pulseiras e brindes personalizados para marcas, eventos, campanhas e empresas.</p>
+        <p class="footer-legal">CNPJ 64.617.767/0001-47<br />DNA Pulseiras e Brindes Personalizados Todos Direitos Reservados 2026</p>
       </div>
       <div class="footer-links">
         <a href="#catalogo">Produtos</a>
@@ -1349,7 +1363,7 @@
 
   <script>
     const WHATSAPP_NUMBER = "5511926204697";
-    const DEFAULT_MESSAGE = "Olá! Vim pelo Google e gostaria de solicitar um orçamento para produtos personalizados.";
+    const DEFAULT_MESSAGE = "Olá! Vim pelo site e gostaria de solicitar um orçamento para produtos personalizados.";
 
     function buildWhatsappLink(message = DEFAULT_MESSAGE) {
       return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -1361,7 +1375,7 @@
       button.setAttribute("rel", "noopener noreferrer");
 
       button.addEventListener("click", () => {
-        // Ponto de integração para Google Ads / GTM
+        // Ponto de integração para site Ads / GTM
         // Exemplo: gtag('event', 'conversion', {'send_to': 'AW-XXXX/YYYY'});
         console.log("Lead WhatsApp - DNA Pulseiras");
       });
